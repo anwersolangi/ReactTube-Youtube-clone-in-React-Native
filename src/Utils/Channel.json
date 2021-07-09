@@ -1,0 +1,23 @@
+[
+  {
+    "channelId": 1,
+    "name": "Youtube Clone - React Native",
+    "cover": "https://i.imgur.com/NxWQSkv.jpeg",
+    "avtar": "https://i.imgur.com/8mD8fJp.jpeg",
+    "description": "React Native (also known as RN) is a popular JavaScript-based mobile app framework that allows you to build natively-rendered mobile apps for iOS and Android. The framework lets you create an application for various platforms by using the same codebase.",
+    "links": {
+      "facebook": "https://www.facebook.com/anwerxolangi/",
+      "instagram": "https://www.instagram.com/anwersolangi/",
+      "website": "https://codecanyon.net/user/anwersolangi/portfolio",
+      "twitter": "https://twitter.com/anwerxolangi"
+    },
+    "moreInfo": {
+      "link": "yoursite.com/dummychannellink",
+      "totalViews": "1,118,410,342",
+      "totalVideos": "3K",
+      "followers": "1.27M",
+      "joined": "Sun Jul 04 2021 14:48:18 GMT+0500",
+      "location": "Karachi, Sindh"
+    }
+  }
+]

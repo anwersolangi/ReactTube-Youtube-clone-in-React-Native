@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "username": "Draco Lucius Malfoy",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/1/16/Draco_Mal.JPG",
+    "comment": "Wow nice video!!!!",
+    "likes": 12,
+    "dislikes": 0
+  },
+  {
+    "id": 2,
+    "username": "Lord Voldemort",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Lordvoldemort.jpg/330px-Lordvoldemort.jpg",
+    "comment": "Hows it working???",
+    "likes": 100,
+    "dislikes": 40
+  },
+  {
+    "id": 7,
+    "username": "Shahrukh Khan",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Shah_Rukh_Khan_2001.jpg",
+    "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "likes": 12,
+    "dislikes": 8
+  },
+  {
+    "id": 3,
+    "username": "Harry Potter",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg",
+    "comment": "Dummy Comment for testing purpose.........",
+    "likes": 4,
+    "dislikes": 12
+  },
+  {
+    "id": 5,
+    "username": "Mark",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/330px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg",
+    "comment": "Dummy comment, dummy user, generated from mockaroo",
+    "likes": 23,
+    "dislikes": 20
+  },
+  {
+    "id": 4,
+    "username": "Severus Snape",
+    "profileAvtar": "https://random.imagecdn.app/500/150",
+    "comment": "https://upload.wikimedia.org/wikipedia/en/b/b9/Ootp076.jpg",
+    "likes": 12,
+    "dislikes": 0
+  },
+  {
+    "id": 6,
+    "username": "Sirius Black",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/6/6b/Sirius_Black.jpeg",
+    "comment": "This is the long dummy comment, with lorem Ipsum text, with multine purposes",
+    "likes": 12,
+    "dislikes": 5
+  },
+  {
+    "id": 8,
+    "username": "Sherlock Holmes",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Sherlock_Holmes_Portrait_Paget.jpg",
+    "comment": "Who is watching this video in 2021?",
+    "likes": 120,
+    "dislikes": 6
+  },
+  {
+    "id": 9,
+    "username": "Jay Gatsby",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/4/42/JayGatsby1.jpg",
+    "comment": "Great :)",
+    "likes": 11,
+    "dislikes": 0
+  },
+  {
+    "id": 10,
+    "username": "Ronald Bilius Weasley",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/5/5e/Ron_Weasley_poster.jpg",
+    "comment": "Hello World!",
+    "likes": 15,
+    "dislikes": 1
+  },
+  {
+    "id": 11,
+    "username": "Captain America",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Richard_Armitage_2014_%28cropped%29.jpg/375px-Richard_Armitage_2014_%28cropped%29.jpg",
+    "comment": "React Native",
+    "likes": 0,
+    "dislikes": 0
+  },
+  {
+    "id": 12,
+    "username": "Myrlene",
+    "profileAvtar": "https://random.imagecdn.app/500/150",
+    "comment": "Android 10",
+    "likes": 122,
+    "dislikes": 0
+  },
+  {
+    "id": 13,
+    "username": "Maureen",
+    "profileAvtar": "https://random.imagecdn.app/500/150",
+    "comment": "",
+    "likes": 12,
+    "dislikes": 0
+  },
+  {
+    "id": 14,
+    "username": "Olly",
+    "profileAvtar": "https://random.imagecdn.app/500/150",
+    "comment": "This is GOLD!! I WISH I FOUND THIS CHANNEL EARLIER",
+    "likes": 12,
+    "dislikes": 0
+  },
+  {
+    "id": 15,
+    "username": "Jessy",
+    "profileAvtar": "https://random.imagecdn.app/500/150",
+    "comment": "been waiting for this !",
+    "likes": 12,
+    "dislikes": 0
+  }
+]
