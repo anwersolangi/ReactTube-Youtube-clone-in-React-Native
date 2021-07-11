@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import Modal from 'react-native-modal';
 
 const BottomModal = props => {
-  const {children, isVisible, dismiss} = props;
+  const {children, isVisible, dismiss, scrollView} = props;
   return (
     <Modal
       isVisible={isVisible}
@@ -11,8 +11,19 @@ const BottomModal = props => {
       style={styles.modal}
       onBackButtonPress={dismiss}
       onBackdropPress={dismiss}
-      onSwipeComplete={dismiss}>
-      <View style={styles.viewContainer}>
+      onSwipeComplete={dismiss}
+      propagateSwipe={true}
+      scrollOffset={1}
+      scrollTo={() => {}}
+      useNativeDriverForBackdrop
+      {...props}>
+      <View
+        style={
+          scrollView
+            ? // eslint-disable-next-line react-native/no-inline-styles
+              {...styles.viewContainer, height: '65%'}
+            : styles.viewContainer
+        }>
         <View style={styles.modalLine} />
         {children}
       </View>
@@ -32,7 +43,7 @@ const styles = StyleSheet.create({
   },
   modalLine: {
     borderBottomWidth: 4,
-    borderBottomColor: '#040201',
+    borderBottomColor: '#e4e8ec',
     width: '10%',
     alignSelf: 'center',
     borderRadius: 10,
