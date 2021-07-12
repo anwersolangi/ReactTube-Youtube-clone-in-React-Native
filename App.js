@@ -1,16 +1,9 @@
-import {
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Text,
-  Pressable,
-} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 
 import HomeScreen from './src/Screens/HomeScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import SplashScreen from './src/Screens/SplashScreen';
@@ -22,8 +15,8 @@ import Videos from './src/Screens/Videos';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import UserScreen from './src/Screens/User';
 import UserData from './src/Utils/User.json';
-import TopScreen from './src/Screens/TopScreen';
-import VideosScreen from './src/Screens/Videos';
+import EditVideo from './src/Screens/EditVideo';
+import UserVideo from './src/Screens/UserVideo';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -122,9 +115,17 @@ function UserChannel() {
         style: {
           borderBottomWidth: 0,
         },
+        activeTintColor: '#212121',
+        labelStyle: {
+          fontFamily: 'Roboto-Medium',
+          fontSize: 15,
+        },
+        indicatorStyle: {
+          backgroundColor: '#212121',
+        },
       }}>
       <TopBar.Screen name="User" component={UserScreen} />
-      <TopBar.Screen name="Video" component={VideosScreen} />
+      <TopBar.Screen name="Video" component={UserVideo} />
       <TopBar.Screen name="About" component={AboutScreen} />
     </TopBar.Navigator>
   );
@@ -196,6 +197,20 @@ const App = props => {
               <Text style={styles.channelName}>
                 {route?.params.channelName}
               </Text>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="EditVideo"
+          initialParams={{optionsModal: false}}
+          component={EditVideo}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+            },
+            headerTitleAlign: 'left',
+            headerTitle: () => (
+              <Text style={styles.channelName}>{route?.params.videoTitle}</Text>
             ),
           })}
         />

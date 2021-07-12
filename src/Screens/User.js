@@ -15,7 +15,7 @@ import {LineChart, BarChart} from 'react-native-chart-kit';
 import {AllTimes, MonthLabels, WeekLabels} from '../Utils/Labes';
 import {widthPercentageToDP} from '../Utils/DpToPixel';
 import Icon from 'react-native-vector-icons/Ionicons';
-import BottomModal from '../Modules/BottomModal';
+import {BottomModal, Button} from '../Modules';
 
 const data = {
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -61,9 +61,7 @@ const UserScreen = props => {
         contentContainerStyle={styles.contentContainer}>
         <Image source={{uri: UserData?.avtar}} style={styles.avtar} />
         <Text style={styles.name}>{UserData?.name}</Text>
-        <Pressable style={styles.editButton}>
-          <Text style={styles.buttonText}>Edit</Text>
-        </Pressable>
+        <Button title="Edit" />
         <View style={styles.channelDescription}>
           <Description
             head={numberSeperator(UserData?.totalFollowers)}
@@ -138,8 +136,6 @@ const UserScreen = props => {
                   },
                 ],
               }}
-              // width={widthPercentageToDP('96%')}
-              // height={230}
               width={widthPercentageToDP(
                 getWidth(
                   viewData === 'month'
@@ -150,7 +146,7 @@ const UserScreen = props => {
                 ).toString(),
               )}
               height={240}
-              yAxisInterval={1} // optional, defaults to 1
+              yAxisInterval={1}
               chartConfig={{
                 backgroundColor: '#e26a00',
                 backgroundGradientFrom: '#fb8c00',
@@ -169,23 +165,13 @@ const UserScreen = props => {
               }}
               x
               bezier
-              style={{
-                marginVertical: 8,
-                borderRadius: 16,
-                paddingRight: 53,
-                marginHorizontal: 7,
-              }}
+              style={styles.chart}
               verticalLabelRotation={340}
             />
           </ScrollView>
           <Text style={styles.heading}>Earning</Text>
           <BarChart
-            style={{
-              marginVertical: 8,
-              borderRadius: 16,
-              paddingRight: 53,
-              marginHorizontal: 7,
-            }}
+            style={styles.chart}
             data={data}
             width={widthPercentageToDP('96%')}
             height={230}
@@ -238,22 +224,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 10,
   },
-  editButton: {
-    width: '38%',
-    height: 43,
-    borderRadius: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 10,
-    borderWidth: 1.7,
-    borderColor: '#04abf2',
-    alignSelf: 'center',
-  },
-  buttonText: {
-    fontFamily: 'Roboto-Medium',
-    fontSize: 15,
-    color: '#04abf2',
-  },
   name: {
     fontFamily: 'Roboto-Black',
     fontSize: 20,
@@ -286,8 +256,8 @@ const styles = StyleSheet.create({
   selectedOption: {
     fontFamily: 'Roboto-Medium',
     fontSize: 14,
-    backgroundColor: '#04abf2',
-    color: '#026691',
+    backgroundColor: '#ecf3fd',
+    color: '#04abf2',
     padding: 8,
     borderRadius: 7,
     marginHorizontal: 10,
@@ -327,6 +297,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
+  },
+  chart: {
+    marginVertical: 8,
+    borderRadius: 16,
+    paddingRight: 53,
+    marginHorizontal: 7,
   },
 });
 

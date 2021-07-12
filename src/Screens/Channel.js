@@ -14,7 +14,7 @@ import ChannelData from '../Utils/Channel.json';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeData from '../Utils/HomeData.json';
 import {heightPercentageToDP} from '../Utils/DpToPixel';
-import {getMonthString} from '../Utils/Util';
+import {getMonthString, numberSeperator} from '../Utils/Util';
 
 const Option = props => {
   return (
@@ -25,9 +25,17 @@ const Option = props => {
 };
 
 export const Description = props => {
+  const {icon, count} = props;
   return (
     <View style={styles.descView}>
-      <Text style={styles.descHead}>{props.head}</Text>
+      {icon && <Icon name={icon} size={26} color="#212121" />}
+      {count ? (
+        <Text style={styles.descHead}>{numberSeperator(count)}</Text>
+      ) : count === 0 ? (
+        <Text style={styles.descHead}>{numberSeperator(count)}</Text>
+      ) : (
+        <Text style={styles.descHead}>{props.head}</Text>
+      )}
       <Text style={styles.descTitle}>{props.title}</Text>
     </View>
   );

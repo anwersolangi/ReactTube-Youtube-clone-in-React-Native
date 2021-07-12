@@ -23,7 +23,6 @@ import {ProgressView} from '@react-native-community/progress-view';
 import Modal from 'react-native-modal';
 import CommentsData from '../Utils/Comments.json';
 import {numberFormat, numberSeperator, getMonthString} from '../Utils/Util';
-import {startClock} from 'react-native-reanimated';
 import {heightPercentageToDP} from '../Utils/DpToPixel';
 
 const Player = props => {
