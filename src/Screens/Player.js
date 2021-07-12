@@ -126,6 +126,131 @@ const Player = props => {
     }
   };
 
+  const renderedItems = ({item, index}) => {
+    return (
+      <Pressable
+        onPress={() =>
+          props.navigation.navigate('Player', {
+            videoIndex: index,
+          })
+        }
+        style={styles.autoPlayContainer}>
+        <Image
+          source={{
+            uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${item?.thumb}`,
+          }}
+          resizeMode="cover"
+          style={styles.thumbnail}
+        />
+        <View style={styles.detailContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.listVideoTitle} numberOfLines={2}>
+              {item?.title}
+            </Text>
+            <Text style={styles.videoDescription} numberOfLines={2}>
+              {`${item?.views} views . ${
+                item?.uploaded === 'just now'
+                  ? 'just now'
+                  : `${item?.uploaded} ago`
+              }`}
+            </Text>
+          </View>
+        </View>
+      </Pressable>
+    );
+  };
+
+  const HeaderComp = () => {
+    return (
+      <View>
+        <View style={styles.descHead}>
+          <Text style={styles.heading} numberOfLines={2}>
+            {data?.title}
+          </Text>
+          <Pressable onPress={() => setDescModal(true)}>
+            <Icon name="chevron-down-outline" color="#040201" size={24} />
+          </Pressable>
+        </View>
+        <Text style={styles.videoDesc} numberOfLines={2}>
+          {`${numberFormat(data?.views)} views . ${
+            data?.uploaded === 'just now' ? 'just now' : `${data?.uploaded} ago`
+          }`}
+        </Text>
+        <View style={styles.optionsContainer}>
+          <View style={styles.option}>
+            <Icon name="heart-outline" color="#040201" size={30} />
+            <Text style={styles.optionCounter}>
+              {numberFormat(data?.likes)}
+            </Text>
+          </View>
+          <View style={styles.option}>
+            <Icon name="heart-dislike-outline" color="#040201" size={30} />
+            <Text style={styles.optionCounter}>{data?.dislikes}</Text>
+          </View>
+          <View style={styles.option}>
+            <Icon name="share-social-outline" color="#040201" size={30} />
+            <Text style={styles.optionCounter}>Share</Text>
+          </View>
+          <View style={styles.option}>
+            <Icon name="download-outline" color="#040201" size={30} />
+            <Text style={styles.optionCounter}>Download</Text>
+          </View>
+          <View style={styles.option}>
+            <Icon name="bookmark-outline" color="#040201" size={30} />
+            <Text style={styles.optionCounter}>Save</Text>
+          </View>
+        </View>
+        <View style={styles.seperator} />
+        <View style={styles.channelContainer}>
+          <TouchableOpacity
+            style={styles.channel}
+            onPress={() =>
+              props.navigation.navigate('ChannelScreen', {
+                channelName: data?.channel,
+                channelIndex: data?.channelId,
+              })
+            }>
+            <Image
+              source={{
+                uri: 'https://s3.envato.com/files/335035895/thumbnail.png',
+              }}
+              style={styles.channelAvtar}
+            />
+            <Text style={styles.channelName}>{data?.channel}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.followButton}>
+            <Text style={styles.followText}>Follow</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.seperator} />
+        <Pressable
+          style={styles.commentContainer}
+          onPress={() => setCommentModal(true)}>
+          <View style={styles.descHead}>
+            <Text style={styles.commentText}>
+              Comments <Text style={styles.commentCount}>23</Text>
+            </Text>
+            <Icon name="ellipsis-horizontal" color="#040201" size={24} />
+          </View>
+          <View style={styles.commentAccount}>
+            <Image
+              source={{uri: 'https://picsum.photos/200/300'}}
+              style={styles.commentAvtar}
+            />
+            <Text style={styles.userCommentText}>
+              This is the dummy comment
+            </Text>
+          </View>
+        </Pressable>
+        <View style={styles.seperator} />
+      </View>
+    );
+  };
+
+  const AutoFooter = () => {
+    return <View />;
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar hidden={fullScreen} />
@@ -192,153 +317,12 @@ const Player = props => {
         <VirtualizedList
           data={HomeData}
           getItemCount={() => HomeData.length}
-          getItem={(data, index) => data[index]}
+          getItem={(item, index) => item[index]}
           contentContainerStyle={styles.descContainer}
-          ListFooterComponent={() => <View />}
+          ListFooterComponent={AutoFooter}
           ListFooterComponentStyle={{height: 15}}
-          ListHeaderComponent={() => {
-            return (
-              <View>
-                <View style={styles.descHead}>
-                  <Text style={styles.heading} numberOfLines={2}>
-                    {data?.title}
-                  </Text>
-                  <Pressable onPress={() => setDescModal(true)}>
-                    <Icon
-                      name="chevron-down-outline"
-                      color="#040201"
-                      size={24}
-                    />
-                  </Pressable>
-                </View>
-                <Text style={styles.videoDesc} numberOfLines={2}>
-                  {`${numberFormat(data?.views)} views . ${
-                    data?.uploaded === 'just now'
-                      ? 'just now'
-                      : `${data?.uploaded} ago`
-                  }`}
-                </Text>
-                <View style={styles.optionsContainer}>
-                  <View style={styles.option}>
-                    <Icon name="heart-outline" color="#040201" size={30} />
-                    <Text style={styles.optionCounter}>
-                      {numberFormat(data?.likes)}
-                    </Text>
-                  </View>
-                  <View style={styles.option}>
-                    <Icon
-                      name="heart-dislike-outline"
-                      color="#040201"
-                      size={30}
-                    />
-                    <Text style={styles.optionCounter}>{data?.dislikes}</Text>
-                  </View>
-                  <View style={styles.option}>
-                    <Icon
-                      name="share-social-outline"
-                      color="#040201"
-                      size={30}
-                    />
-                    <Text style={styles.optionCounter}>Share</Text>
-                  </View>
-                  <View style={styles.option}>
-                    <Icon name="download-outline" color="#040201" size={30} />
-                    <Text style={styles.optionCounter}>Download</Text>
-                  </View>
-                  <View style={styles.option}>
-                    <Icon name="bookmark-outline" color="#040201" size={30} />
-                    <Text style={styles.optionCounter}>Save</Text>
-                  </View>
-                </View>
-                <View style={styles.seperator} />
-                <View style={styles.channelContainer}>
-                  <TouchableOpacity
-                    style={styles.channel}
-                    onPress={() =>
-                      props.navigation.navigate('ChannelScreen', {
-                        channelName: data?.channel,
-                        channelIndex: data?.channelId,
-                      })
-                    }>
-                    <Image
-                      source={{
-                        uri: 'https://s3.envato.com/files/335035895/thumbnail.png',
-                      }}
-                      style={styles.channelAvtar}
-                    />
-                    <Text style={styles.channelName}>{data?.channel}</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.followButton}>
-                    <Text style={styles.followText}>Follow</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.seperator} />
-                <Pressable
-                  style={styles.commentContainer}
-                  onPress={() => setCommentModal(true)}>
-                  <View style={styles.descHead}>
-                    <Text style={styles.commentText}>
-                      Comments <Text style={styles.commentCount}>23</Text>
-                    </Text>
-                    <Icon
-                      name="ellipsis-horizontal"
-                      color="#040201"
-                      size={24}
-                    />
-                  </View>
-                  <View style={styles.commentAccount}>
-                    <Image
-                      source={{uri: 'https://picsum.photos/200/300'}}
-                      style={styles.commentAvtar}
-                    />
-                    <Text style={styles.userCommentText}>
-                      This is the dummy comment
-                    </Text>
-                  </View>
-                </Pressable>
-                <View style={styles.seperator} />
-              </View>
-            );
-          }}
-          renderItem={({item, index}) => {
-            return (
-              <Pressable
-                onPress={() =>
-                  props.navigation.navigate('Player', {
-                    videoIndex: index,
-                  })
-                }
-                style={{
-                  flexDirection: 'row',
-                  marginHorizontal: 10,
-                  marginVertical: 8,
-                  width: '100%',
-                  alignItems: 'flex-start',
-                }}>
-                <Image
-                  source={{
-                    uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${item?.thumb}`,
-                  }}
-                  resizeMode="cover"
-                  style={styles.thumbnail}
-                />
-                <View style={styles.detailContainer}>
-                  <View style={styles.titleContainer}>
-                    <Text style={styles.listVideoTitle} numberOfLines={2}>
-                      {item?.title}
-                    </Text>
-                    <Text style={styles.videoDescription} numberOfLines={2}>
-                      {`${item?.views} views . ${
-                        item?.uploaded === 'just now'
-                          ? 'just now'
-                          : `${item?.uploaded} ago`
-                      }`}
-                    </Text>
-                  </View>
-                </View>
-              </Pressable>
-            );
-          }}
+          ListHeaderComponent={HeaderComp}
+          renderItem={renderedItems}
           keyExtractor={(item, index) => index.toString()}
         />
       )}
@@ -376,7 +360,7 @@ const Player = props => {
           <VirtualizedList
             data={CommentsData}
             getItemCount={() => CommentsData.length}
-            getItem={(data, index) => data[index]}
+            getItem={(item, index) => item[index]}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => {
               return (
@@ -834,6 +818,13 @@ const styles = StyleSheet.create({
     color: '#9c9c9c',
     fontFamily: 'Roboto-Medium',
     fontSize: 12,
+  },
+  autoPlayContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 10,
+    marginVertical: 8,
+    width: '100%',
+    alignItems: 'flex-start',
   },
 });
 
