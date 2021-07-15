@@ -11,17 +11,81 @@ import {
 import HomeData from '../Utils/HomeData.json';
 import Icon from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react';
-import {heightPercentageToDP} from '../Utils/DpToPixel';
+import {CoverVideo} from '../Modules';
 import Modal from 'react-native-modal';
 import Orientation from 'react-native-orientation-locker';
 import {useFocusEffect} from '@react-navigation/native';
+import {BottomModal} from '../Modules';
+
+const Option = ({onPress, icon, title}) => {
+  return (
+    <Pressable style={styles.option} onPress={onPress}>
+      <Icon name={icon} color="#282828" size={25} />
+      <Text style={styles.optionText}>{title}</Text>
+    </Pressable>
+  );
+};
 
 const HomeScreen = props => {
   const [optionModal, setOptionModal] = useState(false);
+  const [profileModal, setProfileModal] = useState(false);
+
+  useFocusEffect(() => {
+    props.navigation.dangerouslyGetParent().setOptions({
+      headerRight: headerProps => (
+        <View style={styles.homeRight}>
+          <TouchableOpacity
+            style={styles.rightButton}
+            onPress={() => props.navigation.navigate('Notifications')}>
+            <Icon name="notifications-outline" color="#282828" size={26} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.rightButton}
+            onPress={() => props.navigation.navigate('Search')}>
+            <Icon name="search-outline" color="#282828" size={26} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.rightButton}
+            onPress={() => setProfileModal(true)}>
+            <Image
+              source={{
+                uri: 'https://avatars.githubusercontent.com/u/37410529?v=4',
+              }}
+              style={styles.channelAvtar}
+            />
+          </TouchableOpacity>
+        </View>
+      ),
+    });
+  });
 
   useFocusEffect(() => {
     Orientation.lockToPortrait();
   });
+
+  const Comp = ({item, index}) => {
+    return (
+      <CoverVideo
+        onPress={() =>
+          props.navigation.navigate('Player', {
+            videoIndex: index,
+          })
+        }
+        thumbnail={item?.thumb}
+        channelAction={() =>
+          props.navigation.navigate('ChannelScreen', {
+            channelName: item?.channel,
+          })
+        }
+        channelAvtar={'https://s3.envato.com/files/335035895/thumbnail.png'}
+        title={item?.title}
+        channelName={item?.channel}
+        uploaded={item?.uploaded}
+        views={item?.views}
+        action={() => setOptionModal(true)}
+      />
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -30,57 +94,7 @@ const HomeScreen = props => {
         getItemCount={() => HomeData.length}
         getItem={(data, index) => data[index]}
         contentContainerStyle={{flexGrow: 1}}
-        renderItem={data => {
-          return (
-            <Pressable
-              onPress={() =>
-                props.navigation.navigate('Player', {
-                  videoIndex: data?.index,
-                })
-              }>
-              <Image
-                source={{
-                  uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${data?.item?.thumb}`,
-                }}
-                resizeMode="cover"
-                style={styles.thumbnail}
-              />
-              <View style={styles.detailContainer}>
-                <Pressable
-                  onPress={() =>
-                    props.navigation.navigate('ChannelScreen', {
-                      channelName: data?.item?.channel,
-                    })
-                  }>
-                  <Image
-                    style={styles.channelAvtar}
-                    source={{
-                      uri: 'https://s3.envato.com/files/335035895/thumbnail.png',
-                    }}
-                    resizeMode="cover"
-                  />
-                </Pressable>
-                <View style={styles.titleContainer}>
-                  <Text style={styles.videoTitle} numberOfLines={2}>
-                    {data?.item?.title}
-                  </Text>
-                  <Text style={styles.channelName} numberOfLines={2}>
-                    {`${data?.item?.channel} . ${data?.item?.views} views . ${
-                      data?.item?.uploaded === 'just now'
-                        ? 'just now'
-                        : `${data?.item?.uploaded} ago`
-                    }`}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  style={styles.menuButton}
-                  onPress={() => setOptionModal(true)}>
-                  <Icon name="ellipsis-vertical" size={14} color="#6c6c6c" />
-                </TouchableOpacity>
-              </View>
-            </Pressable>
-          );
-        }}
+        renderItem={Comp}
         keyExtractor={(item, index) => index.toString()}
       />
       <Modal
@@ -106,6 +120,19 @@ const HomeScreen = props => {
           </Pressable>
         </View>
       </Modal>
+      <BottomModal
+        isVisible={profileModal}
+        dismiss={() => setProfileModal(false)}>
+        <View style={styles.optionContainer}>
+          <Option title="Settings" icon="settings-outline" />
+          <Option title="Watch letter" icon="time-outline" />
+          <Option title="History" icon="refresh-outline" />
+          <Option title="Help & feedback" icon="help-circle-outline" />
+          <Option title="Privacy policy" icon="shield-checkmark-outline" />
+          <Option title="Terms & Conditions" icon="reader-outline" />
+          <Option title="About us" icon="information-circle-outline" />
+        </View>
+      </BottomModal>
       <View style={styles.margin} />
     </View>
   );
@@ -119,35 +146,12 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
   },
-  thumbnail: {
-    width: '100%',
-    height: heightPercentageToDP('26%'),
-  },
-  detailContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 8,
-    marginHorizontal: 10,
-    alignItems: 'center',
-  },
   channelAvtar: {
-    width: 35,
-    height: 35,
-    borderRadius: 35 / 2,
+    width: 28,
+    height: 28,
+    borderRadius: 28 / 2,
   },
-  videoTitle: {
-    color: '#282828',
-    fontFamily: 'Roboto-Medium',
-    fontSize: 16,
-    letterSpacing: 0.1,
-  },
-  titleContainer: {
-    flexDirection: 'column',
-    width: '80%',
-  },
-  channelName: {
-    color: '#9c9c9c',
-  },
+
   modal: {
     margin: 0,
     justifyContent: 'flex-end',
@@ -191,6 +195,34 @@ const styles = StyleSheet.create({
   },
   margin: {
     marginBottom: 48,
+  },
+  homeRight: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 10,
+    justifyContent: 'space-around',
+  },
+  rightButton: {
+    marginHorizontal: 8,
+    width: 30,
+    height: 30,
+    borderRadius: 30 / 2,
+  },
+  optionContainer: {
+    marginHorizontal: 11,
+    marginBottom: 4,
+  },
+  option: {
+    flexDirection: 'row',
+    marginVertical: 5,
+    padding: 5,
+  },
+  optionText: {
+    fontFamily: 'Roboto-Light',
+    marginLeft: 10,
+    fontSize: 18,
+    color: '#212121',
   },
 });
 

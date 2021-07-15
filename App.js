@@ -1,4 +1,4 @@
-import {Image, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {Image, StyleSheet, Text, Pressable} from 'react-native';
 
 import HomeScreen from './src/Screens/HomeScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -17,6 +17,10 @@ import UserScreen from './src/Screens/User';
 import UserData from './src/Utils/User.json';
 import EditVideo from './src/Screens/EditVideo';
 import UserVideo from './src/Screens/UserVideo';
+import Library from './src/Screens/Library';
+import Search from './src/Screens/Search';
+import Notifications from './src/Screens/Notifications';
+import Settings from './src/Screens/Settings';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,6 +68,20 @@ const MainTabs = () => {
           tabBarIcon: tabInfo => (
             <Icon
               name={tabInfo.focused ? 'compass' : 'compass-outline'}
+              size={25}
+              color="#282828"
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Library"
+        component={Library}
+        options={{
+          tabBarLabel: 'Library',
+          tabBarIcon: tabInfo => (
+            <Icon
+              name={tabInfo.focused ? 'apps' : 'apps-outline'}
               size={25}
               color="#282828"
             />
@@ -141,6 +159,45 @@ const App = props => {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="Search"
+          component={Search}
+          options={({navigation}) => ({
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={32} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Notifications"
+          component={Notifications}
+          options={({navigation}) => ({
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={32} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={Notifications}
+          options={({navigation}) => ({
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={32} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
           name="Main"
           component={MainTabs}
           options={({navigation, roue}) => ({
@@ -154,28 +211,6 @@ const App = props => {
                 style={styles.logo}
                 resizeMode="contain"
               />
-            ),
-            headerRight: () => (
-              <View style={styles.homeRight}>
-                <TouchableOpacity style={styles.rightButton}>
-                  <Icon
-                    name="notifications-outline"
-                    color="#282828"
-                    size={26}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.rightButton}>
-                  <Icon name="search-outline" color="#282828" size={26} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.rightButton}>
-                  <Image
-                    source={{
-                      uri: 'https://avatars.githubusercontent.com/u/37410529?v=4',
-                    }}
-                    style={styles.channelAvtar}
-                  />
-                </TouchableOpacity>
-              </View>
             ),
           })}
         />
@@ -214,6 +249,20 @@ const App = props => {
             ),
           })}
         />
+        <Stack.Screen
+          name="VideosScreen"
+          initialParams={{optionsModal: false}}
+          component={Videos}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+            },
+            headerTitleAlign: 'left',
+            headerTitle: () => (
+              <Text style={styles.channelName}>{route?.params.screenName}</Text>
+            ),
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -222,24 +271,6 @@ const App = props => {
 const styles = StyleSheet.create({
   logo: {
     width: 90,
-  },
-  homeRight: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: 10,
-    justifyContent: 'space-around',
-  },
-  channelAvtar: {
-    width: 28,
-    height: 28,
-    borderRadius: 28 / 2,
-  },
-  rightButton: {
-    marginHorizontal: 8,
-    width: 30,
-    height: 30,
-    borderRadius: 30 / 2,
   },
   channelName: {
     fontFamily: 'Roboto-Medium',
@@ -257,6 +288,9 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
+  },
+  headerLeft: {
+    marginLeft: 10,
   },
 });
 

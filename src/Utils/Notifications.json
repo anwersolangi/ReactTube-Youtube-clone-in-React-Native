@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "notification": "Unboxing the youtubeClone",
+    "image": "https://picsum.photos/200/300",
+    "channelAvtar": "https://s3.envato.com/files/335035895/thumbnail.png",
+    "channelName": "My Channel",
+    "isLive": false
+  },
+  {
+    "id": 1,
+    "notification": "Lets explore",
+    "image": "https://picsum.photos/200/300",
+    "channelAvtar": "https://s3.envato.com/files/335035895/thumbnail.png",
+    "channelName": "My Channel",
+    "isLive": true
+  },
+  {
+    "id": 1,
+    "notification": "Facebook with React Native",
+    "image": "https://picsum.photos/200/300",
+    "channelAvtar": "https://s3.envato.com/files/335035895/thumbnail.png",
+    "channelName": "My Channel",
+    "isLive": false
+  },
+  {
+    "id": 1,
+    "notification": "These are the dummy notifications",
+    "image": "https://picsum.photos/200/300",
+    "channelAvtar": "https://s3.envato.com/files/335035895/thumbnail.png",
+    "channelName": "My Channel",
+    "isLive": false
+  },
+  {
+    "id": 1,
+    "notification": "Happiness can be found even in the darkest of time",
+    "image": "https://picsum.photos/200/300",
+    "channelAvtar": "https://s3.envato.com/files/335035895/thumbnail.png",
+    "channelName": "My Channel",
+    "isLive": true
+  }
+]

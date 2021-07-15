@@ -11,7 +11,7 @@ import {
 import {heightPercentageToDP, widthPercentageToDP} from '../Utils/DpToPixel';
 import Videos from '../Utils/HomeData.json';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {BottomModal, Button} from '../Modules';
+import {BottomModal, Button, IconText} from '../Modules';
 
 const TextLabel = props => {
   const {label, title, onChange, multiline} = props;
@@ -27,16 +27,6 @@ const TextLabel = props => {
         {...props}
       />
     </View>
-  );
-};
-
-const ModalOption = props => {
-  const {icon, text, onPress} = props;
-  return (
-    <Pressable style={styles.row} onPress={onPress}>
-      <Icon name={icon} color="#202020" size={26} />
-      <Text style={styles.visibilityText}>{text}</Text>
-    </Pressable>
   );
 };
 
@@ -133,17 +123,17 @@ const EditVideo = props => {
         dismiss={() => setVisibilityModal(false)}>
         <View>
           <Text style={styles.modalHeading}>Select Audience</Text>
-          <ModalOption
+          <IconText
             text="Public"
             icon="earth-outline"
             onPress={() => setVisibility('earth', 'Public')}
           />
-          <ModalOption
+          <IconText
             text="My followers"
             icon="people"
             onPress={() => setVisibility('people', 'My followers')}
           />
-          <ModalOption
+          <IconText
             text="Private"
             icon="eye-off-outline"
             onPress={() => setVisibility('eye-off', 'Private')}
