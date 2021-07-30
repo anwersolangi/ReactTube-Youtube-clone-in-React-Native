@@ -16,6 +16,7 @@ import {AllTimes, MonthLabels, WeekLabels} from '../Utils/Labes';
 import {widthPercentageToDP} from '../Utils/DpToPixel';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {BottomModal, Button} from '../Modules';
+import {displayName} from '../../app.json';
 
 const data = {
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -29,6 +30,7 @@ const data = {
 const UserScreen = props => {
   const [viewData, setViewData] = useState('week');
   const [uploadModal, setUploadModal] = useState(false);
+  const [loggedUser] = useState(false);
 
   const chartConfig = {
     decimalPlaces: 0, // optional, defaults to 2dp
@@ -53,6 +55,28 @@ const UserScreen = props => {
     let width = 96;
     return widthData.length >= 25 ? width + 4 + widthData.length : width;
   };
+
+  if (!loggedUser) {
+    return (
+      <View style={styles.loginContainer}>
+        <Image
+          source={require('../../assets/logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+        <Text style={styles.loginHeading}>Join the family</Text>
+        <Text style={styles.description}>
+          Create your {displayName} Account or Login to share your videos with
+          the community
+        </Text>
+        <Button
+          title="Register or Login"
+          styleProps={styles.loginButton}
+          textStyle={styles.loginText}
+        />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -303,6 +327,34 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingRight: 53,
     marginHorizontal: 7,
+  },
+  loginContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 200,
+  },
+  loginHeading: {
+    fontFamily: 'Roboto-Black',
+    color: '#181818',
+    fontSize: 29,
+  },
+  description: {
+    fontFamily: 'Roboto-Medium',
+    color: '#929292',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  loginButton: {
+    backgroundColor: '#00C6FF',
+    borderWidth: 0,
+    borderRadius: 30,
+  },
+  loginText: {
+    color: '#fff',
   },
 });
 

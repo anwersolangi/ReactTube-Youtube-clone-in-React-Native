@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Pressable, Linking} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Linking,
+  ScrollView,
+} from 'react-native';
 import ChannelData from '../Utils/Channel.json';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -80,7 +87,7 @@ const AboutScreen = props => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={styles.heading}>Description</Text>
         <Text style={styles.content}>{data?.description}</Text>
@@ -111,7 +118,7 @@ const AboutScreen = props => {
           iconSize={28}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -87,6 +87,14 @@ const HomeScreen = props => {
     );
   };
 
+  const watchLaterHandler = () => {
+    setProfileModal(false);
+    props.navigation.navigate('VideosScreen', {
+      screenName: 'Watch Later',
+      listId: 1,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <VirtualizedList
@@ -124,13 +132,40 @@ const HomeScreen = props => {
         isVisible={profileModal}
         dismiss={() => setProfileModal(false)}>
         <View style={styles.optionContainer}>
-          <Option title="Settings" icon="settings-outline" />
-          <Option title="Watch letter" icon="time-outline" />
+          <Option
+            title="Settings"
+            icon="settings-outline"
+            onPress={() => props.navigation.navigate('Settings')}
+          />
+          <Option
+            title="Watch later"
+            icon="time-outline"
+            onPress={watchLaterHandler}
+          />
           <Option title="History" icon="refresh-outline" />
           <Option title="Help & feedback" icon="help-circle-outline" />
-          <Option title="Privacy policy" icon="shield-checkmark-outline" />
+          <Option
+            title="Privacy policy"
+            icon="shield-checkmark-outline"
+            onPress={() => props.navigation.navigate('PrivacyPolicy')}
+          />
           <Option title="Terms & Conditions" icon="reader-outline" />
-          <Option title="About us" icon="information-circle-outline" />
+          <Option
+            title="About US HTML"
+            icon="information-circle-outline"
+            onPress={() => props.navigation.navigate('AboutUs')}
+          />
+          <Option
+            title="About us RN"
+            icon="information-circle-outline"
+            onPress={() => props.navigation.navigate('AboutComp')}
+          />
+          <Option
+            title="Login"
+            icon="log-in-outline"
+            onPress={() => props.navigation.navigate('Login')}
+          />
+          <Option title="Logout" icon="log-out-outline" />
         </View>
       </BottomModal>
       <View style={styles.margin} />

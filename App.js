@@ -16,11 +16,21 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import UserScreen from './src/Screens/User';
 import UserData from './src/Utils/User.json';
 import EditVideo from './src/Screens/EditVideo';
+import EditChannel from './src/Screens/EditChannel';
 import UserVideo from './src/Screens/UserVideo';
 import Library from './src/Screens/Library';
 import Search from './src/Screens/Search';
 import Notifications from './src/Screens/Notifications';
 import Settings from './src/Screens/Settings';
+import Purchases from './src/Screens/Purchases';
+import Earnings from './src/Screens/Earnings';
+import BlockedUser from './src/Screens/Block';
+import Verification from './src/Screens/Verification';
+import AboutUs from './src/Screens/AboutUs';
+import AboutComp from './src/Screens/AboutUs_2';
+import Login from './src/Screens/Login';
+import Signup from './src/Screens/Signup';
+import PrivacyPolicy from './src/Screens/PrivacyPolicy';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -152,7 +162,9 @@ function UserChannel() {
 const App = props => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator
+        initialRouteName="Main"
+        screenOptions={{headerStyle: {elevation: 0, shadowOpacity: 0}}}>
         <Stack.Screen
           name="SplashScreen"
           component={SplashScreen}
@@ -186,8 +198,13 @@ const App = props => {
         />
         <Stack.Screen
           name="Settings"
-          component={Notifications}
+          component={Settings}
           options={({navigation}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
             headerLeft: () => (
               <Pressable
                 style={styles.headerLeft}
@@ -203,6 +220,8 @@ const App = props => {
           options={({navigation, roue}) => ({
             headerStyle: {
               height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
             },
             headerTitleAlign: 'left',
             headerTitle: () => (
@@ -226,6 +245,8 @@ const App = props => {
           options={({navigation, route}) => ({
             headerStyle: {
               height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
             },
             headerTitleAlign: 'left',
             headerTitle: () => (
@@ -242,10 +263,199 @@ const App = props => {
           options={({navigation, route}) => ({
             headerStyle: {
               height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
             },
             headerTitleAlign: 'left',
             headerTitle: () => (
               <Text style={styles.channelName}>{route?.params.videoTitle}</Text>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="EditProfile"
+          initialParams={{optionsModal: false}}
+          component={EditChannel}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerTitleAlign: 'left',
+            headerTitle: () => (
+              <Text style={styles.channelName}>
+                {route?.params.channelName}
+              </Text>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Earnings"
+          initialParams={{optionsModal: false}}
+          component={Earnings}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+          })}
+        />
+        <Stack.Screen
+          name="Purchases"
+          initialParams={{optionsModal: false}}
+          component={Purchases}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Verification"
+          initialParams={{optionsModal: false}}
+          component={Verification}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="AboutUs"
+          initialParams={{optionsModal: false}}
+          component={AboutUs}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="AboutComp"
+          initialParams={{optionsModal: false}}
+          component={AboutComp}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerTitle: 'About US RN',
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Login"
+          initialParams={{optionsModal: false}}
+          component={Login}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerTitle: 'Login',
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Signup"
+          initialParams={{optionsModal: false}}
+          component={Signup}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerTitle: 'Signup',
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="PrivacyPolicy"
+          initialParams={{optionsModal: false}}
+          component={PrivacyPolicy}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerTitle: 'Privacy Policy',
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="BlockedList"
+          initialParams={{optionsModal: false}}
+          component={BlockedUser}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerTitle: 'Blocked Users',
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
             ),
           })}
         />
@@ -256,6 +466,8 @@ const App = props => {
           options={({navigation, route}) => ({
             headerStyle: {
               height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
             },
             headerTitleAlign: 'left',
             headerTitle: () => (

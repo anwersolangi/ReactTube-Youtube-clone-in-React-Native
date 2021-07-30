@@ -1,11 +1,20 @@
 import React from 'react';
-import {Pressable, Text, StyleSheet} from 'react-native';
+import {Pressable, Text, StyleSheet, ActivityIndicator} from 'react-native';
 
 const Button = props => {
-  const {title, onPress} = props;
+  const {title, onPress, styleProps, textProps, textStyle, isLoading} = props;
   return (
-    <Pressable style={styles.editButton} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
+    <Pressable
+      style={[styles.editButton, styleProps]}
+      onPress={onPress}
+      {...props}>
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <Text style={[styles.buttonText, textStyle]} {...textProps}>
+          {title}
+        </Text>
+      )}
     </Pressable>
   );
 };

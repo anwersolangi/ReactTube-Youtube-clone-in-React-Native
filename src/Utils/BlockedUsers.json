@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "username": "Draco Lucius Malfoy",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/1/16/Draco_Mal.JPG",
+    "email": "slytherinheir@gmail.com"
+  },
+  {
+    "id": 2,
+    "username": "Lord Voldemort",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Lordvoldemort.jpg/330px-Lordvoldemort.jpg",
+    "email": "lordvoldemort@darkkmagic.com"
+  },
+  {
+    "id": 7,
+    "username": "Shahrukh Khan",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Shah_Rukh_Khan_2001.jpg",
+    "email": "iamsrk@myworld.com"
+  },
+  {
+    "id": 3,
+    "username": "Harry Potter",
+    "profileAvtar": "https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg",
+    "email": "potter@gmail.com"
+  }
+]

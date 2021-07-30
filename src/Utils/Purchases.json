@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "item": "Subscriptions",
+    "amount": 36
+  },
+  {
+    "id": 2,
+    "item": "Video Rights",
+    "amount": 50
+  },
+  {
+    "id": 3,
+    "item": "Support",
+    "amount": 500
+  }
+]
