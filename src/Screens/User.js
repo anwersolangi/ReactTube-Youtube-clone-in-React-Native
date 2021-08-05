@@ -13,7 +13,7 @@ import {Description} from '../Screens/Channel';
 import {numberSeperator} from '../Utils/Util';
 import {LineChart, BarChart} from 'react-native-chart-kit';
 import {AllTimes, MonthLabels, WeekLabels} from '../Utils/Labes';
-import {widthPercentageToDP} from '../Utils/DpToPixel';
+import {heightPercentageToDP, widthPercentageToDP} from '../Utils/DpToPixel';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {BottomModal, Button} from '../Modules';
 import {displayName} from '../../app.json';
@@ -30,7 +30,8 @@ const data = {
 const UserScreen = props => {
   const [viewData, setViewData] = useState('week');
   const [uploadModal, setUploadModal] = useState(false);
-  const [loggedUser] = useState(false);
+  const [noContent, setNoContent] = useState(true);
+  const [loggedUser] = useState(true);
 
   const chartConfig = {
     decimalPlaces: 0, // optional, defaults to 2dp
@@ -102,114 +103,129 @@ const UserScreen = props => {
             title="Views"
           />
         </View>
-        <View>
-          <Text style={styles.heading}>Analytics</Text>
-          <View style={styles.division}>
-            <Text
-              style={
-                viewData === 'allTime' ? styles.selectedOption : styles.option
-              }
-              onPress={() => setViewData('allTime')}>
-              All Times
-            </Text>
-            <Text
-              style={
-                viewData === 'month' ? styles.selectedOption : styles.option
-              }
-              onPress={() => setViewData('month')}>
-              This Month
-            </Text>
-            <Text
-              style={
-                viewData === 'week' ? styles.selectedOption : styles.option
-              }
-              onPress={() => setViewData('week')}>
-              This Week
-            </Text>
+        {noContent ? (
+          <View style={styles.noContent}>
+            <Image
+              source={require('../../assets/noContent.png')}
+              style={styles.vector}
+              resizeMode="contain"
+            />
+            <View style={styles.noContentDetail}>
+              <Text style={styles.noContentHeading}>No Content available</Text>
+              <Button title="Upload Video" />
+            </View>
           </View>
-          <ScrollView
-            horizontal={true}
-            contentOffset={
-              getWidth(
-                viewData === 'month'
-                  ? MonthLabels
-                  : viewData === 'week'
-                  ? WeekLabels
-                  : AllTimes,
-              ) < 90
-                ? {x: 10000, y: 0}
-                : {x: 0, y: 0}
-            }
-            showsHorizontalScrollIndicator={false}>
-            <LineChart
-              data={{
-                labels:
-                  viewData === 'month'
-                    ? MonthLabels
-                    : viewData === 'week'
-                    ? WeekLabels
-                    : AllTimes,
-                datasets: [
-                  {
-                    data:
-                      viewData === 'month'
-                        ? UserData?.thisMonthsViews
-                        : viewData === 'week'
-                        ? UserData?.thisWeeksViews
-                        : UserData?.allTime,
-                  },
-                ],
-              }}
-              width={widthPercentageToDP(
+        ) : (
+          <View>
+            <Text style={styles.heading}>Analytics</Text>
+            <View style={styles.division}>
+              <Text
+                style={
+                  viewData === 'allTime' ? styles.selectedOption : styles.option
+                }
+                onPress={() => setViewData('allTime')}>
+                All Times
+              </Text>
+              <Text
+                style={
+                  viewData === 'month' ? styles.selectedOption : styles.option
+                }
+                onPress={() => setViewData('month')}>
+                This Month
+              </Text>
+              <Text
+                style={
+                  viewData === 'week' ? styles.selectedOption : styles.option
+                }
+                onPress={() => setViewData('week')}>
+                This Week
+              </Text>
+            </View>
+            <ScrollView
+              horizontal={true}
+              contentOffset={
                 getWidth(
                   viewData === 'month'
                     ? MonthLabels
                     : viewData === 'week'
                     ? WeekLabels
                     : AllTimes,
-                ).toString(),
-              )}
-              height={240}
-              yAxisInterval={1}
-              chartConfig={{
-                backgroundColor: '#e26a00',
-                backgroundGradientFrom: '#fb8c00',
-                backgroundGradientTo: '#ffa726',
-                decimalPlaces: 0, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                },
-                propsForDots: {
-                  r: '6',
-                  strokeWidth: '2',
-                  stroke: '#ffa726',
-                },
-              }}
-              x
-              bezier
+                ) < 90
+                  ? {x: 10000, y: 0}
+                  : {x: 0, y: 0}
+              }
+              showsHorizontalScrollIndicator={false}>
+              <LineChart
+                data={{
+                  labels:
+                    viewData === 'month'
+                      ? MonthLabels
+                      : viewData === 'week'
+                      ? WeekLabels
+                      : AllTimes,
+                  datasets: [
+                    {
+                      data:
+                        viewData === 'month'
+                          ? UserData?.thisMonthsViews
+                          : viewData === 'week'
+                          ? UserData?.thisWeeksViews
+                          : UserData?.allTime,
+                    },
+                  ],
+                }}
+                width={widthPercentageToDP(
+                  getWidth(
+                    viewData === 'month'
+                      ? MonthLabels
+                      : viewData === 'week'
+                      ? WeekLabels
+                      : AllTimes,
+                  ).toString(),
+                )}
+                height={240}
+                yAxisInterval={1}
+                chartConfig={{
+                  backgroundColor: '#e26a00',
+                  backgroundGradientFrom: '#fb8c00',
+                  backgroundGradientTo: '#ffa726',
+                  decimalPlaces: 0, // optional, defaults to 2dp
+                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                  labelColor: (opacity = 1) =>
+                    `rgba(255, 255, 255, ${opacity})`,
+                  style: {
+                    borderRadius: 16,
+                  },
+                  propsForDots: {
+                    r: '6',
+                    strokeWidth: '2',
+                    stroke: '#ffa726',
+                  },
+                }}
+                x
+                bezier
+                style={styles.chart}
+                verticalLabelRotation={340}
+              />
+            </ScrollView>
+            <Text style={styles.heading}>Earning</Text>
+            <BarChart
               style={styles.chart}
-              verticalLabelRotation={340}
+              data={data}
+              width={widthPercentageToDP('96%')}
+              height={230}
+              yAxisLabel="$"
+              chartConfig={chartConfig}
+              withInnerLines={false}
             />
-          </ScrollView>
-          <Text style={styles.heading}>Earning</Text>
-          <BarChart
-            style={styles.chart}
-            data={data}
-            width={widthPercentageToDP('96%')}
-            height={230}
-            yAxisLabel="$"
-            chartConfig={chartConfig}
-            withInnerLines={false}
-          />
-        </View>
+            <TouchableOpacity
+              style={styles.floatingButton}
+              onPress={() => setUploadModal(true)}>
+              <Icon name="add-outline" color="#fff" size={28} />
+            </TouchableOpacity>
+          </View>
+        )}
       </ScrollView>
-      <TouchableOpacity
-        style={styles.floatingButton}
-        onPress={() => setUploadModal(true)}>
-        <Icon name="add-outline" color="#fff" size={28} />
-      </TouchableOpacity>
       <View style={styles.margin} />
       <BottomModal
         isVisible={uploadModal}
@@ -355,6 +371,22 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: '#fff',
+  },
+  noContent: {
+    alignItems: 'center',
+  },
+  noContentHeading: {
+    color: '#606060',
+    fontFamily: 'Roboto-Medium',
+    fontSize: 17,
+  },
+  vector: {
+    width: widthPercentageToDP('90'),
+  },
+  noContentDetail: {
+    top: -40,
+    width: '100%',
+    alignItems: 'center',
   },
 });
 

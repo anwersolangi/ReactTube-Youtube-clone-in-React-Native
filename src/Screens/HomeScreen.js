@@ -87,12 +87,9 @@ const HomeScreen = props => {
     );
   };
 
-  const watchLaterHandler = () => {
+  const navScreen = (screenName, params = {}) => {
     setProfileModal(false);
-    props.navigation.navigate('VideosScreen', {
-      screenName: 'Watch Later',
-      listId: 1,
-    });
+    props.navigation.navigate(screenName, params);
   };
 
   return (
@@ -101,7 +98,7 @@ const HomeScreen = props => {
         data={HomeData}
         getItemCount={() => HomeData.length}
         getItem={(data, index) => data[index]}
-        contentContainerStyle={{flexGrow: 1}}
+        contentContainerStyle={styles.contentContainer}
         renderItem={Comp}
         keyExtractor={(item, index) => index.toString()}
       />
@@ -135,35 +132,57 @@ const HomeScreen = props => {
           <Option
             title="Settings"
             icon="settings-outline"
-            onPress={() => props.navigation.navigate('Settings')}
+            onPress={() => navScreen('Settings')}
           />
           <Option
             title="Watch later"
             icon="time-outline"
-            onPress={watchLaterHandler}
+            onPress={() =>
+              navScreen('VideosScreen', {
+                screenName: 'Watch Later',
+                listId: 1,
+              })
+            }
           />
-          <Option title="History" icon="refresh-outline" />
-          <Option title="Help & feedback" icon="help-circle-outline" />
+          <Option
+            title="History"
+            icon="refresh-outline"
+            onPress={() =>
+              navScreen('VideosScreen', {
+                screenName: 'History',
+                listId: 2,
+              })
+            }
+          />
+          <Option
+            title="Help & feedback"
+            icon="help-circle-outline"
+            onPress={() => navScreen('Help')}
+          />
           <Option
             title="Privacy policy"
             icon="shield-checkmark-outline"
-            onPress={() => props.navigation.navigate('PrivacyPolicy')}
+            onPress={() => navScreen('PrivacyPolicy')}
           />
-          <Option title="Terms & Conditions" icon="reader-outline" />
+          <Option
+            title="Terms & Conditions"
+            icon="reader-outline"
+            onPress={() => navScreen('Terms')}
+          />
           <Option
             title="About US HTML"
             icon="information-circle-outline"
-            onPress={() => props.navigation.navigate('AboutUs')}
+            onPress={() => navScreen('AboutUs')}
           />
           <Option
             title="About us RN"
             icon="information-circle-outline"
-            onPress={() => props.navigation.navigate('AboutComp')}
+            onPress={() => navScreen('AboutComp')}
           />
           <Option
             title="Login"
             icon="log-in-outline"
-            onPress={() => props.navigation.navigate('Login')}
+            onPress={() => navScreen('Login')}
           />
           <Option title="Logout" icon="log-out-outline" />
         </View>

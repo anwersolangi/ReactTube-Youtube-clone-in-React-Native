@@ -1,0 +1,115 @@
+[
+  {
+    "id": 1,
+    "topic": "Advertisement partner",
+    "icon": "megaphone-outline",
+    "description": "This space is a resource dedicated to our demand-side advertising partners. Visit here to learn more about our integration process, bidding protocols, ad specs, inventory quality, and more.",
+    "questions": [
+      {
+        "id": 1,
+        "question": "How much I can earn?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      {
+        "id": 2,
+        "question": "How can i cancel subscription and refund my funds?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun erunt mollit anim id est laborum."
+      },
+      {
+        "id": 3,
+        "question": "How can i withdraw my earnings?",
+        "answer": "Withdrawing funds are really easy, you can go to settings and click on Earnings"
+      },
+      {
+        "id": 4,
+        "question": "How to reach out?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "topic": "Copyright & Community guideliness",
+    "icon": null,
+    "description": "Find out our rules relating to copyright protection as well as community and privacy standards.",
+    "text": "©",
+    "questions": [
+      {
+        "id": 1,
+        "question": "How much I can earn?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      {
+        "id": 2,
+        "question": "How can i cancel subscription and refund my funds?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun erunt mollit anim id est laborum."
+      },
+      {
+        "id": 3,
+        "question": "How can i withdraw my earnings?",
+        "answer": "Withdrawing funds are really easy, you can go to settings and click on Earnings"
+      },
+      {
+        "id": 4,
+        "question": "How to reach out?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "topic": "Partner program",
+    "icon": "color-filter-outline",
+    "description": "Find out how to upload your videos, manage your content within your partner space and your monetization.",
+    "questions": [
+      {
+        "id": 1,
+        "question": "How much I can earn?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      {
+        "id": 2,
+        "question": "How can i cancel subscription and refund my funds?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun erunt mollit anim id est laborum."
+      },
+      {
+        "id": 3,
+        "question": "How can i withdraw my earnings?",
+        "answer": "Withdrawing funds are really easy, you can go to settings and click on Earnings"
+      },
+      {
+        "id": 4,
+        "question": "How to reach out?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "topic": "Watching experience",
+    "icon": "desktop-outline",
+    "description": "Find out how to manage your user account, use our app, and all the features offer to improve your watching experience.",
+    "questions": [
+      {
+        "id": 1,
+        "question": "How much I can earn?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      {
+        "id": 2,
+        "question": "How can i cancel subscription and refund my funds?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun erunt mollit anim id est laborum."
+      },
+      {
+        "id": 3,
+        "question": "How can i withdraw my earnings?",
+        "answer": "Withdrawing funds are really easy, you can go to settings and click on Earnings"
+      },
+      {
+        "id": 4,
+        "question": "How to reach out?",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    ]
+  }
+]

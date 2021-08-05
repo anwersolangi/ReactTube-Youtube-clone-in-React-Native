@@ -18,12 +18,13 @@ import HomeData from '../Utils/HomeData.json';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Orientation from 'react-native-orientation-locker';
-import {useFocusEffect} from '@react-navigation/native';
+import {StackActions, useFocusEffect} from '@react-navigation/native';
 import {ProgressView} from '@react-native-community/progress-view';
 import Modal from 'react-native-modal';
 import CommentsData from '../Utils/Comments.json';
 import {numberFormat, numberSeperator, getMonthString} from '../Utils/Util';
 import {heightPercentageToDP} from '../Utils/DpToPixel';
+import {BottomModal} from '../Modules';
 
 const Player = props => {
   const {videoIndex} = props.route.params;
@@ -40,6 +41,12 @@ const Player = props => {
   const [textInputModal, setTextInputModal] = useState(false);
   const [commentText, setCommentText] = useState('');
   const [descModal, setDescModal] = useState(false);
+  const [downloadModal, setDownloadModal] = useState(false);
+  const [videoDetail, setVideoDetail] = useState({
+    liked: false,
+    disliked: false,
+    saved: false,
+  });
   const data = HomeData[videoIndex];
 
   if (fullScreen) {
@@ -66,7 +73,9 @@ const Player = props => {
           setDescModal(false);
           return;
         } else {
-          props.navigation?.goBack();
+          props.navigation.dispatch(
+            StackActions.replace('Main', {screen: 'Home'}),
+          );
         }
       };
       BackHandler.addEventListener('hardwareBackPress', onHardwareBack);
@@ -78,6 +87,16 @@ const Player = props => {
   const buffering = event => {
     setIsLoading(event?.isBuffering ? true : false);
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      const onBlur = () => {
+        setPause(true);
+      };
+      props.navigation.addListener('blur', onBlur);
+      return () => props.navigation.removeListener('blur', onBlur);
+    }, [props.navigation]),
+  );
 
   const videoLoading = payload => {
     setIsLoading(false);
@@ -137,7 +156,7 @@ const Player = props => {
         style={styles.autoPlayContainer}>
         <Image
           source={{
-            uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${item?.thumb}`,
+            uri: item?.thumb,
           }}
           resizeMode="cover"
           style={styles.thumbnail}
@@ -177,28 +196,58 @@ const Player = props => {
           }`}
         </Text>
         <View style={styles.optionsContainer}>
-          <View style={styles.option}>
-            <Icon name="heart-outline" color="#040201" size={30} />
+          <Pressable
+            style={styles.option}
+            onPress={() =>
+              setVideoDetail({...videoDetail, liked: !videoDetail.liked})
+            }>
+            <Icon
+              name={videoDetail?.liked ? 'heart' : 'heart-outline'}
+              color={videoDetail?.liked ? '#F25252' : '"#040201"'}
+              size={30}
+            />
             <Text style={styles.optionCounter}>
               {numberFormat(data?.likes)}
             </Text>
-          </View>
-          <View style={styles.option}>
-            <Icon name="heart-dislike-outline" color="#040201" size={30} />
+          </Pressable>
+          <Pressable
+            style={styles.option}
+            onPress={() =>
+              setVideoDetail({...videoDetail, disliked: !videoDetail.disliked})
+            }>
+            <Icon
+              name={
+                videoDetail?.disliked
+                  ? 'heart-dislike'
+                  : 'heart-dislike-outline'
+              }
+              color="#040201"
+              size={30}
+            />
             <Text style={styles.optionCounter}>{data?.dislikes}</Text>
-          </View>
-          <View style={styles.option}>
+          </Pressable>
+          <Pressable style={styles.option}>
             <Icon name="share-social-outline" color="#040201" size={30} />
             <Text style={styles.optionCounter}>Share</Text>
-          </View>
-          <View style={styles.option}>
+          </Pressable>
+          <Pressable
+            style={styles.option}
+            onPress={() => setDownloadModal(true)}>
             <Icon name="download-outline" color="#040201" size={30} />
             <Text style={styles.optionCounter}>Download</Text>
-          </View>
-          <View style={styles.option}>
-            <Icon name="bookmark-outline" color="#040201" size={30} />
+          </Pressable>
+          <Pressable
+            style={styles.option}
+            onPress={() =>
+              setVideoDetail({...videoDetail, saved: !videoDetail.saved})
+            }>
+            <Icon
+              name={videoDetail?.saved ? 'bookmark' : 'bookmark-outline'}
+              color={videoDetail?.saved ? '#04abf2' : '#040201'}
+              size={30}
+            />
             <Text style={styles.optionCounter}>Save</Text>
-          </View>
+          </Pressable>
         </View>
         <View style={styles.seperator} />
         <View style={styles.channelContainer}>
@@ -258,7 +307,9 @@ const Player = props => {
         style={!fullScreen ? styles.player : styles.fullScreenVideo}
         onPress={() => setShowControls(!showControls)}>
         <Video
-          source={{uri: `${data?.sources}`}}
+          source={{
+            uri: data?.sources[0],
+          }}
           style={styles.backgroundVideo}
           onBuffer={e => buffering(e)}
           bufferConfig={bufferConfig}
@@ -488,6 +539,28 @@ const Player = props => {
           </ScrollView>
         </View>
       </Modal>
+      <BottomModal
+        isVisible={downloadModal}
+        dismiss={() => setDownloadModal(false)}>
+        <Text style={styles.downloadHeading}>Select</Text>
+        <View style={styles.qualityContainer}>
+          <Pressable>
+            <Text style={styles.qualityText}>140p</Text>
+          </Pressable>
+          <Pressable>
+            <Text style={styles.qualityText}>360p</Text>
+          </Pressable>
+          <Pressable>
+            <Text style={styles.qualityText}>480p</Text>
+          </Pressable>
+          <Pressable>
+            <Text style={styles.qualityText}>720p</Text>
+          </Pressable>
+          <Pressable>
+            <Text style={styles.qualityText}>1080p</Text>
+          </Pressable>
+        </View>
+      </BottomModal>
     </View>
   );
 };
@@ -825,6 +898,22 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     width: '100%',
     alignItems: 'flex-start',
+  },
+  downloadHeading: {
+    fontFamily: 'Roboto-Black',
+    fontSize: 22,
+    color: '#212121',
+    textAlign: 'center',
+  },
+  qualityContainer: {
+    marginHorizontal: 10,
+    marginVertical: 8,
+  },
+  qualityText: {
+    fontFamily: 'Roboto-Medium',
+    fontSize: 18,
+    color: '#181818',
+    marginVertical: 4,
   },
 });
 

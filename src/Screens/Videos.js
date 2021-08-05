@@ -23,7 +23,7 @@ const VideosScreen = props => {
           <Pressable style={styles.videoTile}>
             <Image
               source={{
-                uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${item?.thumb}`,
+                uri: item?.thumb,
               }}
               style={styles.thumbnail}
             />

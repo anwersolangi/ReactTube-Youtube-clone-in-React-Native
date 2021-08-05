@@ -104,7 +104,7 @@ const Settings = props => {
       <BottomModal
         isVisible={monetizationModal}
         dismiss={() => setMonetizationModal(false)}>
-        <View style={styles.modeContainer}>
+        <View style={styles.modalContainer}>
           <Text style={styles.info}>
             Earn (0.2 USD) for each advertisement click you get from your
             videos!
@@ -124,7 +124,7 @@ const Settings = props => {
         />
       </BottomModal>
       <BottomModal isVisible={infoModal} dismiss={() => setInfoModal(false)}>
-        <View style={styles.modeContainer}>
+        <View style={styles.modalContainer}>
           <Text style={styles.info}>
             Please choose which information you want to download
           </Text>
@@ -266,6 +266,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     fontSize: 17,
     marginHorizontal: 20,
+  },
+  modalContainer: {
+    marginHorizontal: 11,
+    marginBottom: 4,
   },
 });
 

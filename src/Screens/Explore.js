@@ -22,7 +22,7 @@ const VideoTile = props => {
     <Pressable style={styles.videoView} onPress={onPress}>
       <Image
         source={{
-          uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${thumbnail}`,
+          uri: thumbnail,
         }}
         style={styles.thumbnail}
         resizeMode="cover"
@@ -86,7 +86,7 @@ const Explore = props => {
       contentContainerStyle={styles.contentContainer}>
       <ImageBackground
         source={{
-          uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${trendedVideo?.thumb}`,
+          uri: trendedVideo?.thumb,
         }}
         resizeMode="cover"
         style={styles.trendThumb}

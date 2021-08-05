@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Pressable,
   View,
@@ -9,8 +9,12 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {heightPercentageToDP} from '../Utils/DpToPixel';
+import {numberFormat} from '../Utils/Util';
+import Loader from './Loading';
 
 const CoverVideo = props => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const {
     onPress,
     thumbnail,
@@ -22,12 +26,15 @@ const CoverVideo = props => {
     views,
     uploaded,
   } = props;
+
   return (
     <Pressable onPress={onPress}>
+      {isLoading && <Loader />}
       <Image
         source={{
-          uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${thumbnail}`,
+          uri: thumbnail,
         }}
+        onLoad={() => setIsLoading(false)}
         resizeMode="cover"
         style={styles.thumbnail}
       />
@@ -46,7 +53,7 @@ const CoverVideo = props => {
             {title}
           </Text>
           <Text style={styles.channelName} numberOfLines={2}>
-            {`${channelName} . ${views} views . ${
+            {`${channelName} . ${numberFormat(views)} views . ${
               uploaded === 'just now' ? 'just now' : `${uploaded} ago`
             }`}
           </Text>

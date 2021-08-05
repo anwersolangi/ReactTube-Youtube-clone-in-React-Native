@@ -1,4 +1,3 @@
-import {useFocusEffect} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
   View,
@@ -51,16 +50,29 @@ const Notifications = props => {
     );
   };
 
+  const EmptyComp = () => {
+    return (
+      <View style={styles.emptyContainer}>
+        <Icon name="notifications-outline" color="#192948" size={150} />
+        <Text style={styles.emptyHeading}>Your notifications livehere</Text>
+        <Text style={styles.emptyText}>
+          Follow your favorite channels, or upload your favorite videos to get
+          latest notifications here
+        </Text>
+      </View>
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      <VirtualizedList
-        data={data}
-        getItemCount={() => data.length}
-        getItem={(item, index) => item[index]}
-        renderItem={WordComp}
-        keyExtractor={(item, index) => index?.toString()}
-      />
-    </View>
+    <VirtualizedList
+      data={data}
+      style={styles.container}
+      getItemCount={() => data.length}
+      getItem={(item, index) => item[index]}
+      renderItem={WordComp}
+      keyExtractor={(item, index) => index?.toString()}
+      ListEmptyComponent={EmptyComp}
+    />
   );
 };
 
@@ -91,6 +103,24 @@ const styles = StyleSheet.create({
     width: 120,
     height: 65,
     borderRadius: 3,
+  },
+  emptyContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyHeading: {
+    color: '#181818',
+    fontFamily: 'Roboto-Medium',
+    fontSize: 24,
+  },
+  emptyText: {
+    color: '#606060',
+    fontFamily: 'Roboto-Medium',
+    fontSize: 15,
+    textAlign: 'center',
+    marginHorizontal: 10,
   },
 });
 

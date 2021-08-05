@@ -45,9 +45,6 @@ const Library = props => {
   const [downloads, setDownloads] = useState(null);
   const [likedVideos, setLikedVideos] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [thumbLink] = useState(
-    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/',
-  );
 
   useEffect(() => {
     let isMounted = true;
@@ -88,35 +85,35 @@ const Library = props => {
       contentContainerStyle={styles.contentContainer}
       showsVerticalScrollIndicator={false}>
       <Component
-        thumbnail={thumbLink + subscription?.thumb}
+        thumbnail={subscription?.thumb}
         text="Following"
         icon="checkmark-done-outline"
         videos={12}
         onPress={() => screenNavigator('Following')}
       />
       <Component
-        thumbnail={thumbLink + watchLater?.thumb}
+        thumbnail={watchLater?.thumb}
         text="Watch Later"
         icon="time-outline"
         videos={12}
         onPress={() => screenNavigator('Watch Later')}
       />
       <Component
-        thumbnail={thumbLink + recentWatch?.thumb}
+        thumbnail={recentWatch?.thumb}
         text="Recently Watched"
         icon="calendar-outline"
         videos={12}
         onPress={() => screenNavigator('Recently Watched')}
       />
       <Component
-        thumbnail={thumbLink + downloads?.thumb}
+        thumbnail={downloads?.thumb}
         text="Downloaded"
         icon="download-outline"
         videos={12}
         onPress={() => screenNavigator('Downloading')}
       />
       <Component
-        thumbnail={thumbLink + likedVideos?.thumb}
+        thumbnail={likedVideos?.thumb}
         text="Liked"
         icon="heart-outline"
         videos={12}

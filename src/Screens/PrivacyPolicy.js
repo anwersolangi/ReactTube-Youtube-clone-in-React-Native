@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import {View, ScrollView, Text, StyleSheet} from 'react-native';
 
@@ -98,6 +99,9 @@ const PrivacyPolicy = props => {
           asked to delete data which you are required to keep by law.
         </Text>
       </View>
+      <Text style={styles.lastUpdate}>
+        Last Updated: {dayjs(new Date()).format('YYYY MMMM DD')}
+      </Text>
     </ScrollView>
   );
 };
@@ -131,6 +135,12 @@ const styles = StyleSheet.create({
     fontSize: 14.5,
     color: '#212121',
     textAlign: 'justify',
+  },
+  lastUpdate: {
+    color: '#979797',
+    fontFamily: 'Roboto-Medium',
+    fontSize: 15,
+    marginVertical: 10,
   },
 });
 

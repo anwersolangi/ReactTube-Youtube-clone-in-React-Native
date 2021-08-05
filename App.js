@@ -31,6 +31,8 @@ import AboutComp from './src/Screens/AboutUs_2';
 import Login from './src/Screens/Login';
 import Signup from './src/Screens/Signup';
 import PrivacyPolicy from './src/Screens/PrivacyPolicy';
+import Terms from './src/Screens/Terms';
+import HelpandSupport from './src/Screens/HelpSupport';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -430,6 +432,46 @@ const App = props => {
               shadowOpacity: 0,
             },
             headerTitle: 'Privacy Policy',
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Terms"
+          initialParams={{optionsModal: false}}
+          component={Terms}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerTitle: 'Terms of Use',
+            headerLeft: () => (
+              <Pressable
+                style={styles.headerLeft}
+                onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back-outline" color="#212121" size={28} />
+              </Pressable>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Help"
+          initialParams={{optionsModal: false}}
+          component={HelpandSupport}
+          options={({navigation, route}) => ({
+            headerStyle: {
+              height: 45,
+              elevation: 0,
+              shadowOpacity: 0,
+            },
+            headerTitle: 'Support',
             headerLeft: () => (
               <Pressable
                 style={styles.headerLeft}
