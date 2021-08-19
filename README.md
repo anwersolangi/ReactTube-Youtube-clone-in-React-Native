@@ -23,6 +23,7 @@ Screen 1               |  Screen 2                       | Screen 3             
 Screen 5               |  Screen 6                       | Screen 7                            |  Screen 8 
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](screenshots/JoinScreen.png)|![](screenshots/LibraryScreen.png)|![](screenshots/EarningScreen.png)|![](screenshots/Splash.png)|
+
 Screen 9               |  Screen 10                       | Screen 11                            |  Screen 12 
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](screenshots/Settings.png)|![](screenshots/Verification.png)|![](screenshots/UserScreen.png)|![](screenshots/HomeScreen.png)|
