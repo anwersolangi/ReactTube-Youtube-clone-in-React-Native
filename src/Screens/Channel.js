@@ -56,8 +56,45 @@ const ChannelScreen = props => {
     });
   });
 
+  const ItemComp = ({item, index}) => {
+    return (
+      <Pressable
+        onPress={() =>
+          props.navigation.navigate('Player', {
+            videoIndex: index,
+          })
+        }
+        style={styles.videoContainer}>
+        <Image
+          source={{
+            uri: item?.thumb,
+          }}
+          resizeMode="cover"
+          style={styles.thumbnail}
+        />
+        <View style={styles.detailContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.videoTitle} numberOfLines={2}>
+              {item?.title}
+            </Text>
+            <Text style={styles.videoDescription} numberOfLines={2}>
+              {`${item?.views} views . ${
+                item?.uploaded === 'just now'
+                  ? 'just now'
+                  : `${item?.uploaded} ago`
+              }`}
+            </Text>
+          </View>
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={14} color="#6c6c6c" />
+          </TouchableOpacity>
+        </View>
+      </Pressable>
+    );
+  };
+
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.mainContainer}>
       <VirtualizedList
         data={HomeData}
         getItemCount={() => HomeData.length}
@@ -67,7 +104,7 @@ const ChannelScreen = props => {
             <View>
               <Image
                 source={{uri: ChannelData[0]?.cover}}
-                style={{width: '100%', height: 154}}
+                style={styles.cover}
                 resizeMode="contain"
               />
               <Image
@@ -115,50 +152,9 @@ const ChannelScreen = props => {
           );
         }}
         initialNumToRender={5}
-        renderItem={({item, index}) => {
-          return (
-            <Pressable
-              onPress={() =>
-                props.navigation.navigate('Player', {
-                  videoIndex: index,
-                })
-              }
-              style={{
-                flexDirection: 'row',
-                marginHorizontal: 8,
-                marginVertical: 4,
-                width: '100%',
-                alignItems: 'flex-start',
-              }}>
-              <Image
-                source={{
-                  uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${item?.thumb}`,
-                }}
-                resizeMode="cover"
-                style={styles.thumbnail}
-              />
-              <View style={styles.detailContainer}>
-                <View style={styles.titleContainer}>
-                  <Text style={styles.videoTitle} numberOfLines={2}>
-                    {item?.title}
-                  </Text>
-                  <Text style={styles.videoDescription} numberOfLines={2}>
-                    {`${item?.views} views . ${
-                      item?.uploaded === 'just now'
-                        ? 'just now'
-                        : `${item?.uploaded} ago`
-                    }`}
-                  </Text>
-                </View>
-                <TouchableOpacity>
-                  <Icon name="ellipsis-vertical" size={14} color="#6c6c6c" />
-                </TouchableOpacity>
-              </View>
-            </Pressable>
-          );
-        }}
+        renderItem={ItemComp}
         ListFooterComponent={() => {
-          return <View style={{height: 80}} />;
+          return <View style={styles.listFooter} />;
         }}
         keyExtractor={(item, index) => index.toString()}
       />
@@ -188,6 +184,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  mainContainer: {
+    flex: 1,
   },
   modal: {
     justifyContent: 'flex-end',
@@ -220,6 +219,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '34%',
     resizeMode: 'contain',
+  },
+  cover: {
+    width: '100%',
+    height: 154,
   },
   headerRight: {
     flexDirection: 'row',
@@ -325,6 +328,16 @@ const styles = StyleSheet.create({
     color: '#9c9c9c',
     fontFamily: 'Roboto-Medium',
     fontSize: 12,
+  },
+  videoContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 8,
+    marginVertical: 4,
+    width: '100%',
+    alignItems: 'flex-start',
+  },
+  listFooter: {
+    height: 30,
   },
 });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, useWindowDimensions} from 'react-native';
-import RenderHTML, {defaultSystemFonts} from 'react-native-render-html';
+import RenderHTML from 'react-native-render-html';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const AboutUs = props => {

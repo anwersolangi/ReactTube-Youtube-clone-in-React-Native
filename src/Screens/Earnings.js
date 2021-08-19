@@ -70,7 +70,7 @@ const Earnings = props => {
     setDatePicker(false);
   };
 
-  const PaypalContent = props => {
+  const PaypalContent = paypalProps => {
     return (
       <View>
         <Text style={styles.month}>
@@ -111,7 +111,7 @@ const Earnings = props => {
     );
   };
 
-  const BankTransfer = props => {
+  const BankTransfer = bankProps => {
     const filtered = Countries.filter(c => c.code === selectedCountry);
     const link = `${flagLink + filtered[0]?.code}.png`;
     return (

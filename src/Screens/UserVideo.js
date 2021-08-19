@@ -214,7 +214,7 @@ const UserVideo = props => {
               style={styles.videoContainer}>
               <Image
                 source={{
-                  uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/${item?.thumb}`,
+                  uri: item?.thumb,
                 }}
                 resizeMode="cover"
                 style={styles.thumbnail}
@@ -239,7 +239,9 @@ const UserVideo = props => {
         ItemSeparatorComponent={() => <View style={styles.seperator} />}
       />
       <BottomModal scrollView isVisible={modal} dismiss={dismiss}>
-        <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}}>
+        <ScrollView
+          style={styles.insightContainer}
+          contentContainerStyle={styles.insightContent}>
           <View style={styles.heading}>
             <Text
               style={
@@ -374,6 +376,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     alignItems: 'center',
     width: '48%',
+  },
+  insightContainer: {
+    flex: 1,
+  },
+  insightContent: {
+    flexGrow: 1,
   },
   listVideoTitle: {
     color: '#282828',

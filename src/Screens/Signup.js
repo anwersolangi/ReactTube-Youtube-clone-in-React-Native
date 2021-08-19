@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   Image,
-  TextInput,
   ScrollView,
   Pressable,
 } from 'react-native';

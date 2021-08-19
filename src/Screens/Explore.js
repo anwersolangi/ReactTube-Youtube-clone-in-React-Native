@@ -53,13 +53,18 @@ const Explore = props => {
   const trendedVideo = Videos[randomInt];
   const slicedData = Videos.slice(0, 6);
 
-  const TrendingItems = ({item}) => {
+  const TrendingItems = ({item, index}) => {
     return (
       <VideoTile
         title={item?.title}
         channel={item?.channel}
         thumbnail={item?.thumb}
         views={item?.views}
+        onPress={() =>
+          props.navigation.navigate('Player', {
+            videoIndex: index,
+          })
+        }
         onChannelPress={() =>
           props.navigation.navigate('ChannelScreen', {
             channelName: item?.channel,
@@ -84,33 +89,40 @@ const Explore = props => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
-      <ImageBackground
-        source={{
-          uri: trendedVideo?.thumb,
-        }}
-        resizeMode="cover"
-        style={styles.trendThumb}
-        onLoad={() => setThumbLoading(false)}>
-        {thumbLoading && <ActivityIndicator size="large" color="#fff" />}
-        <View style={styles.overlay} />
-        <View style={styles.trendContainer}>
-          <View style={styles.row}>
-            <Image
-              source={{
-                uri: 'https://s3.envato.com/files/335035895/thumbnail.png',
-              }}
-              style={styles.trendAvtar}
-              resizeMode="cover"
-            />
-            <Text style={styles.channelName}>{trendedVideo?.channel}</Text>
+      <Pressable
+        onPress={() =>
+          props.navigation.navigate('Player', {
+            videoIndex: randomInt,
+          })
+        }>
+        <ImageBackground
+          source={{
+            uri: trendedVideo?.thumb,
+          }}
+          resizeMode="cover"
+          style={styles.trendThumb}
+          onLoad={() => setThumbLoading(false)}>
+          {thumbLoading && <ActivityIndicator size="large" color="#fff" />}
+          <View style={styles.overlay} />
+          <View style={styles.trendContainer}>
+            <View style={styles.row}>
+              <Image
+                source={{
+                  uri: 'https://s3.envato.com/files/335035895/thumbnail.png',
+                }}
+                style={styles.trendAvtar}
+                resizeMode="cover"
+              />
+              <Text style={styles.channelName}>{trendedVideo?.channel}</Text>
+            </View>
+            <Icon name="flame" size={28} color="#ff9f00" />
           </View>
-          <Icon name="flame" size={28} color="#ff9f00" />
-        </View>
-        <View style={styles.trendTitleContainer}>
-          <Text style={styles.trendedVideoTitle}>{trendedVideo?.title}</Text>
-          <Text style={styles.channelName}>#trending</Text>
-        </View>
-      </ImageBackground>
+          <View style={styles.trendTitleContainer}>
+            <Text style={styles.trendedVideoTitle}>{trendedVideo?.title}</Text>
+            <Text style={styles.channelName}>#trending</Text>
+          </View>
+        </ImageBackground>
+      </Pressable>
       <View style={styles.videosContainer}>
         <IconText
           icon="flame"

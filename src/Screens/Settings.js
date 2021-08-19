@@ -50,7 +50,16 @@ const Settings = props => {
       </View>
       <Text style={styles.heading}>App</Text>
       <View style={styles.modeContainer}>
-        <Option text="Downloads" icon="download-outline" />
+        <Option
+          text="Downloads"
+          icon="download-outline"
+          onPress={() =>
+            props.navigation.navigate('VideosScreen', {
+              screenName: 'Watch Later',
+              listId: 1,
+            })
+          }
+        />
       </View>
       <Text style={styles.heading}>General</Text>
       <View style={styles.modeContainer}>

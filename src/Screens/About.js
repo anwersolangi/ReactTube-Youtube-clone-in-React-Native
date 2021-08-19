@@ -29,6 +29,7 @@ const SocialLink = props => {
         size={iconSize ? iconSize : 20}
       />
       <Text
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           ...styles.link,
           color: type === 'logo' || type === 'url' ? '#1568d6' : '#212121',

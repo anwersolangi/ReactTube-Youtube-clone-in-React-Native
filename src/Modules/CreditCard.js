@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, ImageBackground, StyleSheet, Image} from 'react-native';
 import creditcardutils from 'creditcardutils';
 import {widthPercentageToDP} from '../Utils/DpToPixel';

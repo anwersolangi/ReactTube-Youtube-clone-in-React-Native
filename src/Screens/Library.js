@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import Videos from '../Utils/HomeData.json';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Loader} from '../Modules';
 
 const {height} = Dimensions.get('window');
 

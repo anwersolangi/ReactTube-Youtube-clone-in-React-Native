@@ -13,7 +13,7 @@ import {Description} from '../Screens/Channel';
 import {numberSeperator} from '../Utils/Util';
 import {LineChart, BarChart} from 'react-native-chart-kit';
 import {AllTimes, MonthLabels, WeekLabels} from '../Utils/Labes';
-import {heightPercentageToDP, widthPercentageToDP} from '../Utils/DpToPixel';
+import {widthPercentageToDP} from '../Utils/DpToPixel';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {BottomModal, Button} from '../Modules';
 import {displayName} from '../../app.json';
@@ -30,7 +30,7 @@ const data = {
 const UserScreen = props => {
   const [viewData, setViewData] = useState('week');
   const [uploadModal, setUploadModal] = useState(false);
-  const [noContent, setNoContent] = useState(true);
+  const [noContent] = useState(false);
   const [loggedUser] = useState(true);
 
   const chartConfig = {
@@ -86,7 +86,14 @@ const UserScreen = props => {
         contentContainerStyle={styles.contentContainer}>
         <Image source={{uri: UserData?.avtar}} style={styles.avtar} />
         <Text style={styles.name}>{UserData?.name}</Text>
-        <Button title="Edit" />
+        <Button
+          title="Edit"
+          onPress={() =>
+            props.navigation.navigate('EditProfile', {
+              channelName: UserData?.name,
+            })
+          }
+        />
         <View style={styles.channelDescription}>
           <Description
             head={numberSeperator(UserData?.totalFollowers)}
